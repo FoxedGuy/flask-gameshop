@@ -1,0 +1,20 @@
+GET localhost:5000/users
+
+###
+
+POST localhost:5000/user
+Content-Type: application/json
+
+{
+  "login": "Damian",
+  "email": "gradziuk.damian@o2.pl"
+}
+
+###
+
+GET localhost:5000/user
+Content-Type: application/json
+
+{
+  "login": "Damian"
+}

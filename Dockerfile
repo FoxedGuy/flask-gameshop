@@ -6,4 +6,5 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-CMD ["python3", "app.py"]
+CMD ["pip", "install", "-e", "."]
+CMD ["flask", "--app", "gameshop", "run", "--host=0.0.0.0"]
