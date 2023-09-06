@@ -1,4 +1,5 @@
-GET localhost:5000/users
+GET localhost:5000/user/
+accept: application/json
 
 ###
 
@@ -7,14 +8,11 @@ Content-Type: application/json
 
 {
   "login": "Damian",
-  "email": "gradziuk.damian@o2.pl"
+  "email": "gradziuk.damian@o2.pl",
+  "password": "ddd"
 }
 
 ###
 
-GET localhost:5000/user
-Content-Type: application/json
-
-{
-  "login": "Damian"
-}
+GET localhost:5000/user/1
+accept: application/json

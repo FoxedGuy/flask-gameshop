@@ -1,22 +1,32 @@
 from gameshop import app
 from gameshop.connectors.user_connector import *
-from flask import request, jsonify, make_response
+from gameshop.models.user import UserSchema
+from flask import request, jsonify
 
 
-@app.get("/user")
-async def get_user():
-    data = request.json
-    user = get_user_by_login(data['login'])
-    return jsonify(user)
+@app.get("/user/<int:user_id>")
+async def get_user(user_id):
+    user = get_user_by_index(user_id)
+    user_schema = UserSchema(exclude=["password"])
+    return user_schema.dump(user)
 
 
-@app.get("/users")
+@app.get("/user/")
 async def get_users():
     users = get_all_users()
-    return jsonify(users)
+    users_schema = UserSchema(exclude=["password"],
+                              many=True)
+    return users_schema.dump(users)
 
 
-@app.post("/user")
+@app.post("/user/")
 async def create_user():
     data = request.json
-    return jsonify(create_new_user(login=data.get("login"), email=data.get("email")))
+    user_schema = UserSchema(exclude=["user_id"])
+    errors = user_schema.validate(data)
+    if errors:
+        abort(400)
+    user_schema = UserSchema(exclude=["password"])
+    return user_schema.dump(create_new_user(login=data.get("login"),
+                                            email=data.get("email"),
+                                            password=data.get("password")))
