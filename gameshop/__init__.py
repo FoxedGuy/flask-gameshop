@@ -21,7 +21,7 @@ def resource_not_found(e):
 
 
 import gameshop.routes.user_routes
-
+import gameshop.routes.item_routes
 
 logging.basicConfig(level=logging.INFO)
 db.init_app(app)
