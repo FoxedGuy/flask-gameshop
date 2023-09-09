@@ -23,11 +23,6 @@ def resource_not_found(e):
 import gameshop.routes.user_routes
 
 
-@app.route("/hello")
-def hello_world():
-    return "<p>Hello World!<p>"
-
-
 logging.basicConfig(level=logging.INFO)
 db.init_app(app)
 with app.app_context():

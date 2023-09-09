@@ -14,5 +14,18 @@ Content-Type: application/json
 
 ###
 
-GET localhost:5000/user/1
+PUT localhost:5000/user/1
+Content-Type: application/json
+
+{
+  "login": "Gradziuk"
+}
+
+###
+
+GET localhost:5000/user/34
 accept: application/json
+
+###
+
+DELETE http://localhost:5000/user/34
