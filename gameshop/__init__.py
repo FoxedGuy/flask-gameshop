@@ -1,8 +1,6 @@
 from flask import Flask, jsonify
 from gameshop.database import db
 from flask_marshmallow import Marshmallow
-from werkzeug.exceptions import HTTPException
-import json
 import logging
 
 app = Flask(__name__)

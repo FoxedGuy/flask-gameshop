@@ -37,7 +37,7 @@ async def get_users():
 @app.post("/user/")
 async def create_user():
     data = request.json
-    user_schema = UserSchema(exclude=["user_id"])
+    user_schema = UserSchema(exclude=["user_id", "cart"])
     errors = user_schema.validate(data)
     if errors:
         abort(400)

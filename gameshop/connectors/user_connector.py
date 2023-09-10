@@ -1,6 +1,7 @@
 from flask import abort
 from gameshop.database import db
 from gameshop.models.user import User
+from gameshop.models.cart import Cart
 from werkzeug.security import generate_password_hash
 
 
@@ -9,8 +10,10 @@ def create_new_user(login: str,
                     password: str):
     user = User.query.filter_by(login=login).first()
     if user:
-        abort(400, "User already exists.")
-    user = User(login=login, email=email, password=generate_password_hash(password))
+        abort(400, "User with this login already exists.")
+    cart = Cart()
+    user = User(login=login, email=email, password=generate_password_hash(password), cart=cart)
+    db.session.add(cart)
     db.session.add(user)
     db.session.commit()
     return user
@@ -34,7 +37,7 @@ def update_user_by_index(user_id: int,
                          password: str = None):
     user = User.query.filter_by(user_id=user_id).first()
     if not user:
-        abort(400, "User wit this id doesn't exist")
+        abort(400, "User doesn't exist")
     if login:
         user.login = login
     if email:
@@ -50,7 +53,7 @@ def update_user_by_index(user_id: int,
 def delete_user_by_index(user_id: int):
     user = User.query.filter_by(user_id=user_id).first()
     if not user:
-        abort(400, "User with given id doesn't exist")
+        abort(400, "User doesn't exist")
 
     db.session.delete(user)
     db.session.commit()
