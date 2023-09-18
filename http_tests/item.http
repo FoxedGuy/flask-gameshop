@@ -14,7 +14,20 @@ accept: application/json
 
 {
   "item_name": "Gra",
-  "price": 10.5
+  "price": 10.51,
+  "quantity": 2
+}
+
+###
+
+POST http://localhost:5000/item/
+Content-Type: application/json
+accept: application/json
+
+{
+  "item_name": "Druga gra",
+  "price": 5.0,
+  "quantity": 1
 }
 
 ###

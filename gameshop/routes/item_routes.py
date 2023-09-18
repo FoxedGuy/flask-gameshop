@@ -13,7 +13,8 @@ async def create_item():
         abort(400, "Wrong request compared to given schema")
     item_schema = ItemSchema()
     return item_schema.dump(create_new_item(item_name=data.get("item_name"),
-                                            price=data.get("price")))
+                                            price=data.get("price"),
+                                            quantity=data.get("quantity")))
 
 
 @app.get("/item/<int:item_id>")
@@ -39,7 +40,8 @@ async def update_item(item_id):
     item_schema = ItemSchema()
     return item_schema.dump(update_item_by_index(item_id=item_id,
                                                  item_name=data.get("item_name"),
-                                                 price=data.get("price")))
+                                                 price=data.get("price"),
+                                                 quantity=data.get("quantity")))
 
 
 @app.delete("/item/<int:item_id>")

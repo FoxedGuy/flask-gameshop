@@ -1,0 +1,17 @@
+POST localhost:5000/cart/1
+Content-Type: application/json
+accept: application/json
+
+{
+  "item_id": 2,
+  "quantity": 1
+}
+
+###
+
+GET localhost:5000/cart/1/items/
+accept: application/json
+
+###
+
+DELETE localhost:5000/cart/1/items/

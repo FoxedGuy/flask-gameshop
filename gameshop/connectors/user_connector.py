@@ -1,7 +1,7 @@
 from flask import abort
 from gameshop.database import db
 from gameshop.models.user import User
-from gameshop.models.cart import Cart
+from gameshop.connectors.cart_connector import create_new_cart, delete_cart
 from werkzeug.security import generate_password_hash
 
 
@@ -11,7 +11,7 @@ def create_new_user(login: str,
     user = User.query.filter_by(login=login).first()
     if user:
         abort(400, "User with this login already exists.")
-    cart = Cart()
+    cart = create_new_cart()
     user = User(login=login, email=email, password=generate_password_hash(password), cart=cart)
     db.session.add(cart)
     db.session.add(user)
@@ -55,5 +55,6 @@ def delete_user_by_index(user_id: int):
     if not user:
         abort(400, "User doesn't exist")
 
+    delete_cart(cart_id=user.cart_id)
     db.session.delete(user)
     db.session.commit()

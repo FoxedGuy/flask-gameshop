@@ -4,14 +4,16 @@ from gameshop.models.item import Item
 
 
 def create_new_item(item_name: str,
-                    price: float):
+                    price: float,
+                    quantity: int):
     item = Item.query.filter_by(item_name=item_name).first()
 
     if item:
         abort(400, "Item already exists")
 
     item = Item(item_name=item_name,
-                price=price)
+                price=price,
+                quantity=quantity)
 
     db.session.add(item)
     db.session.commit()
@@ -34,7 +36,8 @@ def get_all_items():
 
 def update_item_by_index(item_id: int,
                          item_name: str | None,
-                         price: int | None):
+                         price: float | None,
+                         quantity: int | None):
     item = Item.query.filter_by(item_id=item_id).first()
 
     if not item:
@@ -44,6 +47,8 @@ def update_item_by_index(item_id: int,
         item.item_name = item_name
     if price:
         item.price = price
+    if quantity:
+        item.quantity = quantity
 
     db.session.commit()
 

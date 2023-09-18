@@ -14,6 +14,17 @@ Content-Type: application/json
 
 ###
 
+POST localhost:5000/user
+Content-Type: application/json
+
+{
+  "login": "Drugi Damian",
+  "email": "damianorr@wp.pl",
+  "password": "eee"
+}
+
+###
+
 PUT localhost:5000/user/1
 Content-Type: application/json
 
@@ -23,9 +34,10 @@ Content-Type: application/json
 
 ###
 
-GET localhost:5000/user/34
+GET localhost:5000/user/1
 accept: application/json
 
 ###
 
 DELETE http://localhost:5000/user/34
+
