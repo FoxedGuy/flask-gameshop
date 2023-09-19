@@ -1,7 +1,7 @@
 from gameshop.database import db
 from gameshop import ma
-from flask_marshmallow import fields
-from gameshop.models.cart import Cart, CartSchema
+from gameshop.models.cart import CartSchema
+from gameshop.models.order import OrderSchema
 
 
 class User(db.Model):
@@ -11,6 +11,7 @@ class User(db.Model):
     password: str = db.Column(db.String)
     cart_id = db.Column(db.Integer, db.ForeignKey("cart.cart_id"))
     cart = db.relationship("Cart")
+    orders = db.relationship("Order")
 
 
 class UserSchema(ma.SQLAlchemySchema):
@@ -23,3 +24,4 @@ class UserSchema(ma.SQLAlchemySchema):
     password = ma.auto_field()
     cart_id = ma.auto_field()
     cart = ma.Nested(CartSchema)
+    orders = ma.Nested(OrderSchema, many=True)

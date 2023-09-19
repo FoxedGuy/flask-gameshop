@@ -1,0 +1,9 @@
+POST localhost:5000/order/place
+Content-Type: application/json
+accept: application/json
+
+{
+ "user_id": 1
+}
+
+###

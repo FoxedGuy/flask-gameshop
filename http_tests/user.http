@@ -7,8 +7,8 @@ POST localhost:5000/user
 Content-Type: application/json
 
 {
-  "login": "Damian",
-  "email": "gradziuk.damian@o2.pl",
+  "login": "Someone",
+  "email": "someone@mail.com",
   "password": "ddd"
 }
 
@@ -18,8 +18,8 @@ POST localhost:5000/user
 Content-Type: application/json
 
 {
-  "login": "Drugi Damian",
-  "email": "damianorr@wp.pl",
+  "login": "AnotherOne",
+  "email": "another.one@mail.pl",
   "password": "eee"
 }
 
@@ -29,7 +29,7 @@ PUT localhost:5000/user/1
 Content-Type: application/json
 
 {
-  "login": "Gradziuk"
+  "login": "DifferentOne"
 }
 
 ###
